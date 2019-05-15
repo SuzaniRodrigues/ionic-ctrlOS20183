@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Cliente } from '../cliente';
+import { compileNgModule } from '@angular/core/src/render3/jit/module';
 
 @Component({
   selector: 'app-add-cliente',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddClientePage implements OnInit {
 
+  private cliente: Cliente;
+
   constructor() { }
 
   ngOnInit() {
+    this.cliente = new Cliente;
+  }
+
+  onSubmit(form){
+    console.log(form);
   }
 
 }
