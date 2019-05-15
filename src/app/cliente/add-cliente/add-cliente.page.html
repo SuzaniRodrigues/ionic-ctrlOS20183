@@ -35,8 +35,8 @@
     <ion-item lines="none"></ion-item>
 
     <ion-item lines="none">
-      <ion-button type="submit" color="primary">Salvar</ion-button>
-      <ion-button type="reset" color="primary">Cancelar</ion-button>
+      <ion-button type="submit" color="primary" [disabled]="fc.invalid">Salvar</ion-button>
+      <ion-button type="reset" [routerLink]="[('/tabs/tab2')]" color="primary">Cancelar</ion-button>
     </ion-item>
   </form>
 </ion-content>
