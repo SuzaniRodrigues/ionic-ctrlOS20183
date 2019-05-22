@@ -12,7 +12,8 @@ export const environment = {
     storageBucket: "ionic-ctrlos.appspot.com",
     messagingSenderId: "920445554539",
     appId: "1:920445554539:web:adf18f2b3101264f"
-  }
+  },
+  dbjson:"http://localhost:3000/"
 };
 
 /*
