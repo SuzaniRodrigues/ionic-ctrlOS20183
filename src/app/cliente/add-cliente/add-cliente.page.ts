@@ -3,6 +3,7 @@ import { AlertController } from '@ionic/angular';
 
 import { Cliente } from '../cliente';
 import { ClienteService } from '../cliente.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-add-cliente',
@@ -15,7 +16,8 @@ export class AddClientePage implements OnInit {
 
   constructor(
     private clienteService: ClienteService,
-    public alertController: AlertController
+    public alertController: AlertController,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -27,6 +29,9 @@ export class AddClientePage implements OnInit {
       .then(
         res => {
           this.presentAlert("Aviso", this.cliente.nome + ". Já ta salvo!");
+          form.reset();
+          this.cliente = new Cliente;
+          this.router.navigate(['tabs/tab2']);
         },
         err => {
           this.presentAlert("Erro!!!", "Ops!! Deu erro!" + err);

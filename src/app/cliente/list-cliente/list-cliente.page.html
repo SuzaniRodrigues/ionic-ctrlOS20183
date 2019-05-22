@@ -14,4 +14,12 @@
     </ion-fab-button>
   </ion-fab>
 
+  <ion-list *ngIf="clientes$ | async as clientes">
+    <ion-item *ngFor="let cliente of clientes">
+      <ion-label>{{cliente.nome}}</ion-label>
+      <ion-text color="primary">{{cliente.email}}</ion-text>
+      <ion-note>{{cliente.email}}</ion-note>
+    </ion-item>
+  </ion-list>
+
 </ion-content>
