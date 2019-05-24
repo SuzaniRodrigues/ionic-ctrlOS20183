@@ -10,16 +10,39 @@
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button color="danger">
-      <ion-icon name="add" [routerLink] = "(['/tabs/addCliente'])"></ion-icon>
+      <ion-icon name="add" [routerLink]="(['/tabs/addCliente'])"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 
   <ion-list *ngIf="clientes$ | async as clientes">
-    <ion-item *ngFor="let cliente of clientes">
-      <ion-label>{{cliente.nome}}</ion-label>
-      <ion-text color="primary">{{cliente.email}}</ion-text>
-      <ion-note>{{cliente.email}}</ion-note>
-    </ion-item>
-  </ion-list>
+
+    <ion-item-sliding *ngFor="let cliente of clientes">
+
+      <ion-item-options side="start">
+        <ion-item-option (click)="remove(cliente.key)" color="danger">
+          <ion-icon slot="icon-only" name="trash"></ion-icon>
+          </ion-item-option>
+      </ion-item-options>
+
+      <ion-item>
+        <ion-label> {{cliente.nome}}</ion-label>
+        <ion-label side="start">{{cliente.nome}}</ion-label>
+        <ion-note>{{cliente.key}}</ion-note>
+      </ion-item>
+
+      <ion-item-options side="end">
+        <ion-item-option color="danger" (click)="edit(cliente.key)" color="primary">
+          <ion-icon slot="icon-only" name="create"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+
+     </ion-item-sliding>
+
+   </ion-list>
+
+
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
 
 </ion-content>
