@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Serviço</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <form #fc="ngForm" (ngSubmit)="onSubmit(fc)">
+     <ion-item>
+      <ion-label position="floating">Descrição</ion-label>
+       <ion-input type= "text" name="descricao" [(ngModel)]="servico.descricao" #descricao="ngModel" required></ion-input>
+     </ion-item>
+
+  <ion-item>
+     <ion-label position="floating">Valor</ion-label>
+     <ion-input type= "number" name="valor" [(ngModel)]="servico.valor" #valor="ngModel" required></ion-input>
+   </ion-item>
+
+    <ion-item>
+       <ion-label position="floating">Tipo</ion-label>
+       <ion-input type= "text" name="tipo" [(ngModel)]="servico.tipo" #tipo="ngModel" required></ion-input>
+     </ion-item>
+
+     <ion-item>
+        <ion-label position="floating">Aberto</ion-label>
+        <ion-input type= "boolean" name="aberto" [(ngModel)]="servico.aberto" #tipo="ngModel" required></ion-input>
+      </ion-item>
+    
+
+       <ion-item lines="none"></ion-item>
+
+       <ion-item lines="none">
+         <ion-button type="submit" color="primary">Salvar</ion-button>
+         <ion-button type="reset" [routerLink]="[('/tabs/tab3')]" color="primary" >Cancelar</ion-button>
+       </ion-item>
+
+  </form>
+
+</ion-content>
