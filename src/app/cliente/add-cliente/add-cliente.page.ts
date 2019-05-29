@@ -3,7 +3,7 @@ import { AlertController } from '@ionic/angular';
 
 import { Cliente } from '../cliente';
 import { ClienteService } from '../cliente.service';
-import {Router} from '@angular/router';
+import {Router, ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-add-cliente',
@@ -17,11 +17,17 @@ export class AddClientePage implements OnInit {
   constructor(
     private clienteService: ClienteService,
     public alertController: AlertController,
-    private router: Router
+    private router: Router,
+    private activeRouter: ActivatedRoute
+    
   ) { }
 
   ngOnInit() {
     this.cliente = new Cliente;
+    this.cliente.id = this.activeRouter.snapshot.paramMap.get("id");
+    if (this.cliente.id != null){
+      this.edit(this.cliente.id);
+    }
   }
 
   onSubmit(form) {
@@ -38,6 +44,15 @@ export class AddClientePage implements OnInit {
         }
       );
   }
+  edit(key){
+    this.clienteService.get(key)
+    .subscribe(
+      res=>{
+        this.cliente = res[0]
+        this.cliente = key;
+      }
+    )
+  }
 
   //Alertas ----------------------------------------------
   async presentAlert(titulo: string, texto: string) {
@@ -50,5 +65,6 @@ export class AddClientePage implements OnInit {
 
     await alert.present();
   }
+
 
 }

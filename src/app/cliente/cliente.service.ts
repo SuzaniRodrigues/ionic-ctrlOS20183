@@ -23,28 +23,13 @@ export class ClienteService {
   save(cliente: Cliente) {
     return this.db.list("clientes").push(cliente);
   }
-
-
-
-
-
-
-
-
-
-
-  
-  // //Local
-  // gerarKey() {
-  //   for (let i = 0; i < localStorage.length; i++) {
-  //     let key = localStorage.key(i);
-  //     let value = localStorage.getItem(key);
-  //     console.log(key, value);
-  //   }
-  //   return localStorage.length + 1;
-  // }
-  // save(cliente: Cliente) {
-
-  //   localStorage.setItem(this.gerarKey().toString(),JSON.stringify(cliente));
-  // }
+  remover(key){
+    return this.db.list("clientes").remove(key);
+  }
+  update(key,cliente:Cliente){
+    return this.db.list("clientes").update(key,cliente);
+  }
+  get(key){
+    return this.db.list<Cliente>("clientes/" + key).valueChanges();
+  }
 }

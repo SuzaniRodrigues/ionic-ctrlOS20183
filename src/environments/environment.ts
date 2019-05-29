@@ -4,14 +4,14 @@
 
 export const environment = {
   production: false,
-  firebaseConfig:  {
-    apiKey: "AIzaSyBOG23vDZpvGCrgywV1-vzhm5GCVXdoqKw",
-    authDomain: "ionic-ctrlos.firebaseapp.com",
-    databaseURL: "https://ionic-ctrlos.firebaseio.com",
-    projectId: "ionic-ctrlos",
-    storageBucket: "ionic-ctrlos.appspot.com",
-    messagingSenderId: "920445554539",
-    appId: "1:920445554539:web:adf18f2b3101264f"
+  firebaseConfig: {
+    apiKey: "AIzaSyBxZCCIarkMy6swCnCGPu4cr94JJlmta_0",
+    authDomain: "projeto-firebase-de366.firebaseapp.com",
+    databaseURL: "https://projeto-firebase-de366.firebaseio.com",
+    projectId: "projeto-firebase-de366",
+    storageBucket: "projeto-firebase-de366.appspot.com",
+    messagingSenderId: "498527462942",
+    appId: "1:498527462942:web:a909a63b9f17ade5"
   },
   dbjson:"http://localhost:3000/"
 };
