@@ -30,6 +30,6 @@ export class ClienteService {
     return this.db.list("clientes").update(key,cliente);
   }
   get(key){
-    return this.db.list<Cliente>("clientes/" + key).valueChanges();
+    return this.db.object<Cliente>("clientes/" + key).valueChanges();
   }
 }

@@ -35,6 +35,15 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'login',
+        children: [
+          {
+            path: '',
+            loadChildren: './cliente/login/login.module#LoginPageModule'
+          }
+        ]
+      },
+      {
         path: 'addServico',
         children: [
           {
