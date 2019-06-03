@@ -24,9 +24,9 @@
           </ion-item-option>
       </ion-item-options>
 
-      <ion-item>
+      <ion-item [routerLink]="['/tabs/perfil', cliente.key]">
         <ion-label> {{cliente.nome}}</ion-label>
-        <ion-label side="start">{{cliente.nome}}</ion-label>
+        <ion-label side="start">{{cliente.email}}</ion-label>
         <ion-note>{{cliente.key}}</ion-note>
       </ion-item>
 

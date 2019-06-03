@@ -24,7 +24,7 @@
           </ion-item-option>
       </ion-item-options>
 
-      <ion-item>
+        <ion-item [routerLink]="['/tabs/desc', servico.key]"></ion-item>
         <ion-label> {{servico.descricao}}</ion-label>
         <ion-label side="start">{{servico.tipo}}</ion-label>
         <ion-label side="start">{{servico.valor}}</ion-label>

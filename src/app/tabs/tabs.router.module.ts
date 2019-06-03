@@ -39,7 +39,7 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: './cliente/login/login.module#LoginPageModule'
+            loadChildren: '../cliente/login/login.module#LoginPageModule'
           }
         ]
       },
@@ -68,6 +68,24 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: '../cliente/add-cliente/add-cliente.module#AddClientePageModule'
+          }
+        ]
+      },
+      {
+        path: 'perfil/:id',
+        children: [
+          {
+            path: '',
+            loadChildren: '../cliente/perfil/perfil.module#PerfilPageModule'
+          }
+        ]
+      },
+      {
+        path: 'perfil/:id',
+        children: [
+          {
+            path: '',
+            loadChildren: '../servico/desc/desc.module#DescPageModule'
           }
         ]
       },
