@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ServicoService} from '../servico.service';
 import { Observable } from 'rxjs';
+import { AlertController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-servico',
@@ -11,7 +13,9 @@ export class ListServicoPage implements OnInit {
   private servicos$: Observable<any[]>;
 
   constructor(
-    private servicoService: ServicoService
+    private servicoService: ServicoService,
+    private alertController: AlertController,
+    private router: Router
   ) { }
 
   ngOnInit() { 
@@ -26,5 +30,30 @@ export class ListServicoPage implements OnInit {
       event.target.complete();
     }, 2000);
   }
+  async remove(key){
+    const alert = await this.alertController.create({
+      header: 'Confirme!',
+      message: 'Deseja apagar o registro',
+      buttons: [
+        {
+         text: 'não',
+         role: 'cancel',
+         cssClass: 'secondary',
+         handler: (blah) =>{
+           console.log('Confirm Cancel: blah');
+         } 
+        },{
+          text: 'sim',
+          handler: () => {
+            this.servicoService.remover(key);
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+  edit(key){
+    this.router.navigate(['/tabs/addServico', key]);
+}
 }
 

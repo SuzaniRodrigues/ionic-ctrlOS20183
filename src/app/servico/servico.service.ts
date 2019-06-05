@@ -23,9 +23,15 @@ export class ServicoService {
   save(servico: Servico) {
     return this.db.list("servicos").push(servico);
   }
-
-
-
+remover(key){
+  return this.db.list("servicos").remove(key);
+}
+update(key,servico:Servico){
+  return this.db.list("servicos").update(key,servico);
+}
+get (key){
+  return this.db.object<Servico>("servicos/" + key).valueChanges();
+}
 
 
 

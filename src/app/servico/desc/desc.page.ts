@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Servico } from '../servico';
+import { ServicoService } from '../servico.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-perfil',
-  templateUrl: './perfil.page.html',
-  styleUrls: ['./perfil.page.scss'],
+  selector: 'app-desc',
+  templateUrl: './desc.page.html',
+  styleUrls: ['./desc.page.scss'],
 })
-export class PerfilPage implements OnInit {
+export class DescPage implements OnInit {
 
   private servico: Servico;
 

@@ -72,6 +72,15 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'addServico/:id',
+        children: [
+          {
+            path: '',
+            loadChildren: '../servico/add-servico/add-servico.module#AddServicoPageModule'
+          }
+        ]
+      },
+      {
         path: 'perfil/:id',
         children: [
           {
@@ -81,7 +90,7 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'perfil/:id',
+        path: 'desc/:id',
         children: [
           {
             path: '',
