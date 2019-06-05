@@ -40,6 +40,7 @@ export class AddClientePage implements OnInit {
         .then(
           res => {
             this.presentAlert("Aviso", this.cliente.nome + ". Já tá salvo!");
+            this.clienteService.saveAuth(this.cliente);
             form.reset();
             this.cliente = new Cliente;
             this.router.navigate(['/tabs/tab2']);

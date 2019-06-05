@@ -38,5 +38,13 @@ export class LoginPage implements OnInit {
       }
     )
     }
+  
+
+  loginGoogle() {
+    this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider());
+  }
+  logout() {
+    this.afAuth.auth.signOut();
+  }
 
 }

@@ -32,5 +32,12 @@
 </ion-content>
 
 <ion-content>
-  <ion-button expand="block">Block Button</ion-button>
+  
+    <ion-button expand="block" fill="outline" color="medium"(click)="loginGoogle()">
+        <ion-icon slot="start" name="logo-Google"></ion-icon>
+        Entrar com o Google</ion-button>
+
+        <ion-button expand="block" fill="outline" color="medium"(click)="logout()">
+            <ion-icon name="log-out"></ion-icon>
+            Sair do usuário</ion-button>
 </ion-content>
