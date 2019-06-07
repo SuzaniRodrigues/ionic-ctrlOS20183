@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+
 
 import { Cliente } from '../cliente';
 import { ClienteService } from '../cliente.service';
@@ -14,12 +16,14 @@ export class AddClientePage implements OnInit {
 
   private cliente: Cliente;
   private id = null;
+  private preview: any;
 
   constructor(
     private clienteService: ClienteService,
     public alertController: AlertController,
     private router: Router,
-    private activeRouter: ActivatedRoute
+    private activeRouter: ActivatedRoute,
+    private camera: Camera
   ) {
   }
 
@@ -36,20 +40,38 @@ export class AddClientePage implements OnInit {
 
   onSubmit(form) {
     if (this.id == null) {
-      this.clienteService.save(this.cliente)
+      if(this.preview){
+      //Grava usuario na autenticação ------------------------
+      this.clienteService.saveAuth(this.cliente)
         .then(
           res => {
-            this.presentAlert("Aviso", this.cliente.nome + ". Já tá salvo!");
-            this.clienteService.saveAuth(this.cliente);
-            form.reset();
-            this.cliente = new Cliente;
-            this.router.navigate(['/tabs/tab2']);
+            this.cliente.foto = this.preview;
+            //Grava dados do usuario no Banco de dados ----------------
+            this.clienteService.save(this.cliente)
+              .then(
+                res => {
+                  this.presentAlert("Aviso", this.cliente.nome + ". Já tá salvo!");
+                  form.reset();
+                  this.cliente = new Cliente;
+                  this.router.navigate(['/tabs/tab2']);
+                },
+                err => {
+                  this.presentAlert("Erro!!!", "Ops!! Deu erro ao salvar!" + err);
+                }
+              )
           },
           err => {
-            this.presentAlert("Erro!!!", "Ops!! Deu erro ao salvar!" + err);
+            this.presentAlert("Erro!!!", "Usuario já cadastrado!" + err);
+          }
+        ).catch(
+          erros => {
+            this.presentAlert("Erro!!!", "Não consegui conectar ao sistma" + erros);
           }
         )
+      
     } else {
+      //Atualiza usuario -------------------------
+      this.cliente.foto = this.preview;
       this.clienteService.update(this.id, this.cliente)
         .then(
           res => {
@@ -61,23 +83,47 @@ export class AddClientePage implements OnInit {
           },
           err => {
             this.presentAlert("Erro!!!", "Ops!! Deu erro na atualização!" + err);
+          
           }
         );
     }
+  } else this.presentAlert("Erro!!", "você tem tirar uma foto!");
   }
 
 
   edit(key) {
+    this.preview = null;
     this.clienteService.get(key)
       .subscribe(
         res => {
           this.cliente = res;
+          if(this.cliente.foto){
+            this.preview = this.cliente.foto;
+          }
           //console.log(res);
         },
         err => {
           console.log(err);
         }
       );
+  }
+  async tirarFoto(){
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.FILE_URI,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
+    }
+    
+    this.camera.getPicture(options).then((imageData) => {
+      // imageData is either a base64 encoded string or a file URI
+      // If it's base64 (DATA_URL):
+      let base64Image = 'data:image/jpeg;base64,' + imageData;
+      this.preview = base64Image;
+     }, (err) => {
+      // Handle error
+      console.log ("Erro camera: " + err);
+     });
   }
 
 

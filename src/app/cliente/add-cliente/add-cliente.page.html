@@ -37,6 +37,12 @@
     <ion-item lines="none">
       <ion-button type="submit" color="primary" [disabled]="fc.invalid || (pws.value != c.value)">Salvar</ion-button>
       <ion-button type="reset" [routerLink]="[('/tabs/tab2')]" color="primary">Cancelar</ion-button>
+      <ion-button color="primary" (click)="tirarFoto()">
+      <ion-icon slot="icon-only" name="camera"></ion-icon>
+      </ion-button>
     </ion-item>
   </form>
+  <ion-item lines="none" *ngIf="preview">
+    <img [src]="preview" alt="">
+  </ion-item>
 </ion-content>

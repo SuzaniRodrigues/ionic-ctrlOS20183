@@ -4,6 +4,6 @@ export class Servico {
         valor: number;
         tipo: string;
         aberto: boolean = true;
-        foto: string;
+        foto: string[] = [];
     }
     
